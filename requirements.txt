@@ -1,0 +1,12 @@
+groq
+langchain-groq
+langchain-google-genai
+crewai==0.28.8
+langchain
+langchain-community
+faiss-cpu
+pypdf
+beautifulsoup4
+requests
+tiktoken
+gradio
