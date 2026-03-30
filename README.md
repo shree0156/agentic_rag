@@ -53,7 +53,7 @@ Structured output: Answer | Why | Citations | Assumptions
 
 ### 2. Open the notebook in Google Colab
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/agentic-rag-course-planner/blob/main/agentic_rag.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shree0156/agentic_rag/blob/main/course_planning%20(1).ipynb)
 
 ### 3. Set your API keys in Cell 2
 
