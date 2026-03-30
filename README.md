@@ -111,19 +111,18 @@ os.environ["GOOGLE_API_KEY"] = "YOUR_KEY_HERE"
 
 ## Sources
 
-| URL | Date accessed | Covers |
-|-----|--------------|--------|
-| https://catalog.gatech.edu/programs/computer-science-bs/ | 2025-07-XX | CS BS degree requirements |
-| https://catalog.gatech.edu/courses-osms/cs/ | 2025-07-XX | CS course descriptions + prereqs |
-| https://catalog.gatech.edu/courses-osms/math/ | 2025-07-XX | MATH course descriptions |
-| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/grading/ | 2025-07-XX | Grading policy |
-| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/ | 2025-07-XX | Academic regulations |
-| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/repeat-policy/ | 2025-07-XX | Course repeat rules |
-| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/transfer-credit/ | 2025-07-XX | Transfer credit policy |
-| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/credit-hours/ | 2025-07-XX | Credit hour definitions |
-| https://catalog.gatech.edu/academics/undergraduate/degree-requirements/ | 2025-07-XX | Degree requirement overview |
-| https://catalog.gatech.edu/academics/undergraduate/registration/ | 2025-07-XX | Registration rules |
-| *(add remaining URLs from your scraped docs list)* | | |
+| URL |  Covers |
+|-----|--------|
+| https://catalog.gatech.edu/programs/computer-science-bs/ | CS BS degree requirements |
+| https://catalog.gatech.edu/courses-osms/cs/ | CS course descriptions + prereqs |
+| https://catalog.gatech.edu/courses-osms/math/  | MATH course descriptions |
+| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/grading/  | Grading policy |
+| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/ | Academic regulations |
+| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/repeat-policy/ | Course repeat rules |
+| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/transfer-credit/ | Transfer credit policy |
+| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/credit-hours/ | Credit hour definitions |
+| https://catalog.gatech.edu/academics/undergraduate/degree-requirements/ | Degree requirement overview |
+| https://catalog.gatech.edu/academics/undergraduate/registration/| Registration rule
 
 ---
 
