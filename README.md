@@ -1,0 +1,168 @@
+# Agentic RAG: Prerequisite & Course Planning Assistant
+
+**Institution:** Georgia Institute of Technology  
+**Catalog source:** https://catalog.gatech.edu  
+**Built with:** LangChain · CrewAI · Groq (llama-3.3-70b) · Google text-embedding-004 · FAISS  
+**Assessment:** Purple Merit Technologies — Agentic RAG Challenge
+
+---
+
+## What this system does
+
+An AI assistant that answers student course-planning questions strictly grounded
+in the Georgia Tech course catalog. Every answer includes citations (source URLs).
+The system uses 4 AI agents working in sequence:
+
+| Agent | Role |
+|-------|------|
+| Intake Specialist | Collects student profile, asks clarifying questions |
+| Catalog Retriever | Searches FAISS index, returns cited catalog excerpts |
+| Course Planner | Builds eligible course plan from catalog evidence |
+| Plan Auditor | Verifies every claim has a citation, flags gaps |
+
+---
+
+## Architecture
+
+```
+Catalog pages (25+)
+      ↓
+HTML scraping (requests + BeautifulSoup)
+      ↓
+Chunking (RecursiveCharacterTextSplitter, size=800, overlap=150)
+      ↓
+Embeddings (Google text-embedding-004, 768 dimensions)
+      ↓
+FAISS vector index (cosine similarity, k=5)
+      ↓
+CrewAI sequential crew (4 agents)
+      ↓
+Structured output: Answer | Why | Citations | Assumptions
+```
+
+---
+
+## Setup
+
+### 1. Get free API keys (no credit card needed)
+
+| Key | Where to get it | Used for |
+|-----|----------------|----------|
+| Groq API key | https://console.groq.com | LLM (agents) |
+| Google API key | https://aistudio.google.com | Embeddings only |
+
+### 2. Open the notebook in Google Colab
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/agentic-rag-course-planner/blob/main/agentic_rag.ipynb)
+
+### 3. Set your API keys in Cell 2
+
+```python
+os.environ["GROQ_API_KEY"]   = "gsk_YOUR_KEY_HERE"
+os.environ["GOOGLE_API_KEY"] = "YOUR_KEY_HERE"
+```
+
+### 4. Run all cells top to bottom
+
+| Cell | What it does |
+|------|-------------|
+| Cell 1 | Install libraries |
+| Cell 2 | Set API keys |
+| Cell 3 | Initialize LLM + embeddings |
+| Cell 4 | Scrape 25+ catalog pages |
+| Cell 5 | Chunk → embed → build FAISS index |
+| Cell 6 | Create catalog search tool |
+| Cell 7 | Define system prompt |
+| Cell 8 | Create 4 CrewAI agents |
+| Cell 9 | Define crew runner function |
+| Cell 10 | Run 3 sample transcripts |
+| Cell 11 | Run 25-query evaluation |
+| Cell 12 | Launch Gradio demo |
+
+---
+
+## Sample interactions
+
+### Prerequisite check
+**Query:** Can I take CS 3510 if I completed CS 1332 with a B?  
+**System:** Eligible. [Source: catalog.gatech.edu/courses-osms/cs/]
+
+### Course plan generation
+**Query:** I completed CS 1301, 1331, 1332, MATH 1551, MATH 1552. Plan 4 courses for Fall.  
+**System:** Suggests CS 2050, CS 2340, CS 3510, MATH 3012 with per-course justification + citations.
+
+### Safe abstention
+**Query:** Who is the professor for CS 4641 next semester?  
+**System:** "I don't have that information in the provided catalog/policies. Please check..."
+
+---
+
+## Evaluation results
+
+| Metric | Score |
+|--------|-------|
+| Citation coverage | XX% (X/25 responses had source URLs) |
+| Abstention accuracy | XX% (X/5 out-of-scope correctly refused) |
+| Eligibility correctness | Manual grading — see eval_results.json |
+
+*Fill in your actual numbers after running Cell 11.*
+
+---
+
+## Sources
+
+| URL | Date accessed | Covers |
+|-----|--------------|--------|
+| https://catalog.gatech.edu/programs/computer-science-bs/ | 2025-07-XX | CS BS degree requirements |
+| https://catalog.gatech.edu/courses-osms/cs/ | 2025-07-XX | CS course descriptions + prereqs |
+| https://catalog.gatech.edu/courses-osms/math/ | 2025-07-XX | MATH course descriptions |
+| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/grading/ | 2025-07-XX | Grading policy |
+| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/ | 2025-07-XX | Academic regulations |
+| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/repeat-policy/ | 2025-07-XX | Course repeat rules |
+| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/transfer-credit/ | 2025-07-XX | Transfer credit policy |
+| https://catalog.gatech.edu/academics/undergraduate/academic-regulations/credit-hours/ | 2025-07-XX | Credit hour definitions |
+| https://catalog.gatech.edu/academics/undergraduate/degree-requirements/ | 2025-07-XX | Degree requirement overview |
+| https://catalog.gatech.edu/academics/undergraduate/registration/ | 2025-07-XX | Registration rules |
+| *(add remaining URLs from your scraped docs list)* | | |
+
+---
+
+## Repository structure
+
+```
+agentic-rag-course-planner/
+├── agentic_rag.ipynb       # Main notebook — run this
+├── catalog_docs.json       # Scraped catalog documents
+├── eval_results.json       # Evaluation output (generated by Cell 11)
+├── README.md               # This file
+└── requirements.txt        # Python dependencies
+```
+
+---
+
+## Requirements
+
+```
+groq
+langchain-groq
+langchain-google-genai
+crewai==0.28.8
+langchain
+langchain-community
+faiss-cpu
+pypdf
+beautifulsoup4
+requests
+tiktoken
+gradio
+```
+
+---
+
+## Demo
+
+[Screen recording link — add after recording]
+
+---
+
+*Built for Purple Merit Technologies Agentic RAG Assessment.*
